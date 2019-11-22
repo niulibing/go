@@ -1,8 +1,17 @@
 package main
 
-import "demo/cn/cncommdata/study/utils"
+import (
+	"demo/cn/cncommdata/study/model"
+	"demo/cn/cncommdata/study/service"
+	"fmt"
+)
 
 func main() {
+
+	var arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	ints := arr[:]
+	arr = append(ints[0:2], ints[4:]...)
+	fmt.Println(arr)
 
 	//array()
 	//mySlice()
@@ -11,6 +20,29 @@ func main() {
 	//resetSlice()
 	//directStatementSlice()
 	//useMakeFunConstructSlice()
-	utils.Send()
+	//utils.Send()
+
+	//实例化file
+
+	file := model.FileConstruct(true)
+
+	fmt.Println(file)
+
+	//声明一个DataWriter的接口
+	var writer service.DataWriter
+
+	//将接口赋值file，也就是*file类型
+	writer = file
+
+	b := file.CanOrNo
+	if b {
+		write := writer.CanWrite(b)
+		if write {
+			data := writer.WriteData("欢迎写入数据")
+			fmt.Println(data)
+		} else {
+			fmt.Printf("不好意思，你无权写入")
+		}
+	}
 
 }
