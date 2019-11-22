@@ -1,21 +1,9 @@
-package main
+package controller
 
 import (
 	"fmt"
 )
 
-func main() {
-
-	//array()
-	//mySlice()
-	//helloWorld()
-	//originSlice()
-	//resetSlice()
-	//directStatementSlice()
-	//useMakeFunConstructSlice()
-	Map()
-
-}
 func helloWorld() {
 
 	a := 1

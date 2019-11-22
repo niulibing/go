@@ -1,8 +1,6 @@
-package main
+package controller
 
-import "fmt"
-
-func main() {
+func main1() {
 
 	//a := 1
 	//c := &a
@@ -29,20 +27,5 @@ func main() {
 	//	fmt.Println()
 	//}
 	//array()
-
-	send()
-
-}
-
-func array() {
-
-	// 多维数组
-	array1 := [4][2]int{{10, 11}, {20, 12}, {30, 134}, {404, 134}}
-
-	fmt.Printf("该二维数组的长度为：%v \n", len(array1))
-	for k, v := range array1 {
-
-		fmt.Println(k, v)
-	}
 
 }
