@@ -1,8 +1,7 @@
 package main
 
 import (
-	"demo/cn/cncommdata/study/model"
-	"demo/cn/cncommdata/study/service"
+	"demo/cn/cncommdata/study/stack"
 	"fmt"
 )
 
@@ -24,25 +23,32 @@ func main() {
 
 	//实例化file
 
-	file := model.FileConstruct(true)
+	//file := model.FileConstruct(true)
+	//
+	//fmt.Println(file)
+	//
+	////声明一个DataWriter的接口
+	//var writer service.DataWriter
+	//
+	////将接口赋值file，也就是*file类型
+	//writer = file
+	//
+	//b := file.CanOrNo
+	//if b {
+	//	write := writer.CanWrite(b)
+	//	if write {
+	//		data := writer.WriteData("欢迎写入数据")
+	//		fmt.Println(data)
+	//	} else {
+	//		fmt.Printf("不好意思，你无权写入")
+	//	}
+	//}
+	stac()
 
-	fmt.Println(file)
-
-	//声明一个DataWriter的接口
-	var writer service.DataWriter
-
-	//将接口赋值file，也就是*file类型
-	writer = file
-
-	b := file.CanOrNo
-	if b {
-		write := writer.CanWrite(b)
-		if write {
-			data := writer.WriteData("欢迎写入数据")
-			fmt.Println(data)
-		} else {
-			fmt.Printf("不好意思，你无权写入")
-		}
-	}
-
+}
+func stac() {
+	createStack := stack.CreateStack()
+	createStack.Push(1313)
+	createStack.Push(3443)
+	fmt.Println(createStack.Pop(), createStack.Pop())
 }
