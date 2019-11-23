@@ -1,6 +1,7 @@
-package main
+package utils
 
 import (
+	"demo/cn/cncommdata/study/model"
 	"github.com/go-gomail/gomail"
 	"strings"
 )
@@ -8,33 +9,6 @@ import (
 /**
 email参数结构体
 */
-type EmailParam struct {
-	/**
-	 * 邮箱服务器端口，如腾讯邮箱为465
-	 */
-	ServerHost string
-	/**
-	 * 邮件发送服务器端口号
-	 */
-	ServerPort int
-	/**
-	 * 发件人邮箱地址
-	 */
-	FromEmail string
-
-	/**
-	 * 发件人邮箱密码
-	 */
-	FromPasswd string
-	/**
-	 * 邮件接收者 ，如果有多个，则以英文的逗号隔开，不能为空
-	 */
-	Toers string
-	/**
-	 * 抄送着邮件地址，如果有多个，则以英文的逗号隔开，可以为空
-	 */
-	CCers string
-}
 
 /**
  * 1。全局变量，因为发件人账号，密码，需要在发送时才能指定，注意，由于是小写，外面的包无法使用
@@ -47,12 +21,13 @@ var m *gomail.Message
 /**
  * 初始化email结构体
  */
-func InitEmail(ep *EmailParam) {
+func InitEmail(ep *model.EmailParam) {
 
 	/**
 	 * 声明切片，用来装邮件接收者
 	 */
 	var toers []string
+
 	/**
 	 * 设置邮件发送的基本信息：发信协议、端口号、发件人账号、发件人账号密码
 	 */
@@ -114,19 +89,19 @@ func SendEmail(subject, body string) {
 	}
 }
 
-func send() {
+func Send() {
 
 	serverHost := "smtp.exmail.qq.com"
 	serverPort := 465
-	fromEmail := "libing.niu@cncommdata.cn"                                                                                  //发件人邮箱
-	fromPasswd := "20190324Cd"                                                                                               //授权码
-	myToers := "libing_niu@163.com"                                                                                          // 收件人邮箱，逗号隔开
-	myCCers := "niulibing@163.com,1968065578@qq.com,leimin@cncommdata.cn,zhilong.xu@cncommdata.cn,xiaobo.wang@cncommdata.cn" //"readchy@163.com"
+	fromEmail := "libing.niu@cncommdata.cn" //发件人邮箱
+	fromPasswd := "20190324Cd"              //授权码
+	myToers := "libing_niu@163.com"         // 收件人邮箱，逗号隔开
+	myCCers := "luhao.liu@cncommdata.cn"    //"readchy@163.com"
 
 	subject := "Go语言测试"
 	body := `你好，Go语言。很高兴能够有机会认识你，希望今后我们能够相亲相爱成为一家人。`
 	// 结构体赋值
-	myEmail := &EmailParam{
+	myEmail := &model.EmailParam{
 		ServerHost: serverHost,
 		ServerPort: serverPort,
 		FromEmail:  fromEmail,
