@@ -1,16 +1,12 @@
 package main
 
 import (
+	"demo/cn/cncommdata/study/controller"
 	"demo/cn/cncommdata/study/stack"
 	"fmt"
 )
 
 func main() {
-
-	var arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	ints := arr[:]
-	arr = append(ints[0:2], ints[4:]...)
-	fmt.Println(arr)
 
 	//array()
 	//mySlice()
@@ -43,7 +39,16 @@ func main() {
 	//		fmt.Printf("不好意思，你无权写入")
 	//	}
 	//}
-	stac()
+
+	//controller.OriginSlice()
+	//fmt.Println("主程序执行")
+	//stac()
+	//controller.PractiseMap()
+	//controller.PractiseSynicMap()
+
+	//controller.PractiseList()
+	//controller.Myfunc(1,2,3,4,5,67,8,"hello go",make(map[int]int))
+	controller.StartCar()
 
 }
 func stac() {

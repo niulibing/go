@@ -1,7 +1,11 @@
 package controller
 
 import (
+	`container/list`
+	`demo/cn/cncommdata/study/model`
 	"fmt"
+	`sync`
+	`time`
 )
 
 func helloWorld() {
@@ -73,10 +77,16 @@ func mySlice() {
 }
 
 //原始切片
-func originSlice() {
+func OriginSlice() {
 
-	a := []int{1, 2, 3}
-	fmt.Printf("原始切片为%v", a[:])
+	var numbers []int
+
+	for i := 0; i < 20; i++ {
+		numbers = append(numbers, append([]int{7, 8, 9}, []int{i}...)...)
+		fmt.Println(numbers)
+		fmt.Printf("切片长度%d，切片容量%d，切片地址值%p\r\n", len(numbers), cap(numbers), numbers)
+	}
+
 }
 
 //重置切片
@@ -129,4 +139,105 @@ func useMakeFunConstructSlice() {
 //使用append为切片添加元素
 func useAppendAddElement() {
 
+}
+
+func PractiseMap() {
+
+	strings := make(map[string][]model.EmailParam, 30)
+	strings["name"] = []model.EmailParam{
+		{ServerHost: "libing_niu@163.com"},
+		{ServerPort: 645},
+		{FromEmail: "43"},
+		{FromPasswd: "4324"},
+		{Toers: "ewr"},
+		{CCers: "rerw"},
+	}
+	delete(strings, "name")
+
+	fmt.Println(strings)
+}
+
+func PractiseSynicMap() {
+
+	var scene sync.Map
+	//添加元素
+	scene.Store("name", "niulibing")
+	scene.Store("sex", "男")
+	fmt.Printf("map集合添加的元素为：%v\r\n", scene)
+
+	//获取元素
+	value, _ := scene.Load("name")
+
+	fmt.Printf("通过name键获取到的元素为%v\r\n", value)
+
+	//删除元素
+	scene.Delete("sex")
+	fmt.Println(scene)
+
+}
+func PractiseList() {
+
+	//list 的初始化有两种方法：分别是使用 New() 函数和 var 关键字声明，两种方法的初始化效果都是一致的。
+	//双链表支持从队列前方或后方插入元素，分别对应的方法是 PushFront 和 PushBack。
+
+	i := list.New()
+
+	i.PushBack(1)
+	i.PushBack(2)
+
+	fmt.Printf("golist插入的数据为%v", &i)
+
+	//make和new的区别
+	// make只能初始化go语言中的基本类型  make用于创建切片、哈希表、和管道等内置数据结构
+	// new只接受一个类型作为参数，然后返回一个指向这个类型的指针  new用于分配并创建一个指向对应类型的指针
+
+}
+
+//可变参数
+func Myfunc(a ...interface{}) {
+
+	now := time.Now()
+
+	for k, v := range a {
+		fmt.Println(k, v)
+	}
+
+	since := time.Since(now)
+
+	fmt.Printf("程序执行了%v", since)
+
+}
+
+type Wheel struct {
+	Size int
+}
+
+type Engine struct {
+	Power int
+	Type  string
+}
+
+type Car struct {
+	Wheel
+	Engine
+}
+
+func StartCar() {
+
+	car := new(Car)
+	{
+
+		// 初始化轮子
+		Wheel{
+			Size: 18,
+		},
+		// 初始化引擎
+			Engine{
+				Type:  "1.4T",
+				Power: 143,
+			},
+
+
+			fmt.Print(car)
+	}
 }
