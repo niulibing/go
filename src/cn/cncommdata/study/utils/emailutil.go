@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"demo/cn/cncommdata/study/model"
 	"github.com/go-gomail/gomail"
+	"message/src/cn/cncommdata/study/model"
 	"strings"
 )
 
