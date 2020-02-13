@@ -6,6 +6,10 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
+/**
+ * @author:libing.niu
+ * @date: 2020/2/13 17:20
+ */
 type Products struct {
 	gorm.Model
 	Code  string

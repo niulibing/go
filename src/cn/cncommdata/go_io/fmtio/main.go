@@ -5,6 +5,10 @@ import (
 	"os"
 )
 
+/**
+ * @author:libing.niu
+ * @date: 2020/2/13 17:19
+ */
 type User struct {
 }
 
