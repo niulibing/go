@@ -17,14 +17,14 @@ func main() {
 	//设置cpu的最大调度个数。如果不设置，cpu是满载调度(还是要给系统留出部分资源)
 	runtime.GOMAXPROCS(runtime.NumCPU() - 1)
 	//初始化chan
-	/*	ch := make(chan string)
-		for i := 0; i < 5; i++ {
-			go PrintHelloWorld(i, ch)
-		}
-		//从通道中输出消息
-		for {
-			fmt.Println(<-ch)
-		}*/
+	ch := make(chan string)
+	for i := 0; i < 5; i++ {
+		go PrintHelloWorld(i, ch)
+	}
+	//从通道中输出消息
+	for {
+		fmt.Println(<-ch)
+	}
 
 }
 

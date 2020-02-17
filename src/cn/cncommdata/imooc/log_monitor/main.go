@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"runtime"
 	"time"
 )
 
@@ -81,6 +82,10 @@ func (l *LogProcess) Process() {
 	}
 }
 func main() {
+
+	fmt.Printf("cpu num=%d", runtime.NumCPU())
+	//设置cpu的调度个数，如果不设置，默认调用全部cpu核数。
+	runtime.GOMAXPROCS(runtime.NumCPU() - 1)
 
 	r := &ReadFromFile{path: "/Users/niulibing/Desktop/abc.log"}
 
