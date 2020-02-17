@@ -82,11 +82,9 @@ func (l *LogProcess) Process() {
 }
 func main() {
 
-	r := &ReadFromFile{path: "/Users/niulibing/Desktop/abc.log",
-	}
+	r := &ReadFromFile{path: "/Users/niulibing/Desktop/abc.log"}
 
-	w := &WriteToFluxDB{influxDBDsn: "username&password",
-	}
+	w := &WriteToFluxDB{influxDBDsn: "username&password"}
 
 	lp := &LogProcess{
 		rc:    make(chan string),

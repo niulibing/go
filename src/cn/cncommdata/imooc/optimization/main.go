@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -57,11 +58,13 @@ func (l *LogProcess) Process() {
 }
 func main() {
 
-	r := &ReadFromFile{path: "/temp/access.log",
-	}
+	fmt.Printf("cpu num = %d", runtime.NumCPU())
+	//设置cpu的最大调度个数。如果不设置，cpu是满载调度(还是要给系统留出部分资源)
+	runtime.GOMAXPROCS(runtime.NumCPU() - 1)
 
-	w := &WriteToFluxDB{influxDBDsn: "username&password",
-	}
+	r := &ReadFromFile{path: "/temp/access.log"}
+
+	w := &WriteToFluxDB{influxDBDsn: "username&password"}
 
 	lp := &LogProcess{
 		rc:    make(chan string),
