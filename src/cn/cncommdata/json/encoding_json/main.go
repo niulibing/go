@@ -6,14 +6,15 @@ import (
 )
 
 type Server struct {
-	ServerName string
-	ServerIP   string
-	ServerPort int
+	ServerName string `json:"name"`
+	ServerIP   string `json:"ip"`
+	ServerPort int    `json:"port"`
 }
 
 //序列化结构体
 func SerializeStruct() {
 
+	//Tag用法
 	server := Server{
 		ServerName: "json-for-struct",
 		ServerIP:   "127.0.0.1",
