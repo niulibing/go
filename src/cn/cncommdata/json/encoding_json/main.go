@@ -6,6 +6,7 @@ import (
 )
 
 type Server struct {
+	//Tag用法
 	ServerName string `json:"name"`
 	ServerIP   string `json:"ip"`
 	ServerPort int    `json:"port"`
@@ -14,7 +15,6 @@ type Server struct {
 //序列化结构体
 func SerializeStruct() {
 
-	//Tag用法
 	server := Server{
 		ServerName: "json-for-struct",
 		ServerIP:   "127.0.0.1",
@@ -25,6 +25,7 @@ func SerializeStruct() {
 
 	if err != nil {
 		fmt.Printf("struct serialize error : %v\n", err.Error())
+		return
 	}
 
 	fmt.Printf("server serialize success: %v\n", string(marshal))
@@ -44,6 +45,7 @@ func SerializeMap() {
 
 	if err != nil {
 		fmt.Printf("map serialize error : %v\n", err.Error())
+		return
 	}
 
 	fmt.Printf("map serialize success: %v\n", string(marshal))
