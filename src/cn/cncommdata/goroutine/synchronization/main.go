@@ -19,6 +19,18 @@ import (
 
 var WG sync.WaitGroup
 
+func main() {
+
+	//主线程读取文件
+	Read()
+	//启动协程写入文件
+	go Write()
+	//等待写入协程全部完成，继续向下执行
+	WG.Wait()
+	fmt.Println("all done")
+
+}
+
 //读取
 func Read() {
 
@@ -36,18 +48,6 @@ func Write() {
 		fmt.Println("Done--->", i)
 		WG.Done()
 		fmt.Printf("移除第%v条协程\n", i)
-
 	}
-
-}
-func main() {
-
-	//主线程读取文件
-	Read()
-	//启动协程写入文件
-	go Write()
-	//等待写入协程全部完成，继续向下执行
-	WG.Wait()
-	fmt.Println("all done")
 
 }
