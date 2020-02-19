@@ -66,7 +66,7 @@ func (r *ReadFromFile) Read(rc chan string) {
 		//将读取到的数据发送至rc通道，实现读取模块和解析模块之间的数据通信
 
 		rc <- readString[:len(readString)-1]
-		fmt.Printf("数据读取模块从日志文件中读取到的数据:【%v】发送到rc通道。", readString)
+		fmt.Printf("数据读取模块从日志文件中读取到的数据:【%v】发送到rc通道。\n", readString)
 	}
 }
 
@@ -77,7 +77,6 @@ func (w *WriteToFluxDB) Write(wc chan string) {
 	fmt.Println("数据解析模块开始从wc通道中获取数据")
 	for s := range wc {
 		fmt.Printf("数据解析模块从wc通道中获取数据为:%v\n", s)
-		fmt.Println(s)
 	}
 }
 func (l *LogProcess) Process() {
